@@ -69,4 +69,16 @@ impl<T> Streams<T> {
                 map
             })
     }
+
+    /// Merge one stream into another
+    pub fn merge_streams(
+        self,
+        other: Streams<T>
+    ) -> Streams<T> {
+        let mut merged_streams = self;
+        for (exchange_id, receiver) in other.streams {
+            merged_streams.streams.entry(exchange_id).or_insert(receiver);
+        }
+        merged_streams
+    }
 }
