@@ -71,7 +71,7 @@ impl<T> Streams<T> {
     }
 
     /// Merge one stream into another
-    pub fn merge_streams(
+    pub async fn merge_streams(
         self,
         other: Streams<T>
     ) -> Streams<T> {
